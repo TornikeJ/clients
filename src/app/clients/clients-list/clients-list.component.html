@@ -18,12 +18,24 @@
 <table class="list">
   <thead>
   <tr>
-    <th>Client Number</th>
-    <th>Client Id</th>
-    <th>Name</th>
-    <th>Surname</th>
-    <th>Legal Country</th>
-    <th>Phone</th>
+    <th (click)="sort('clientNumber')">Client Number
+      <i class="fa-solid fa-sort{{sortBy === 'clientNumber' ? '-up': sortBy === '-clientNumber' ? '-down': ''}}"></i>
+    </th>
+    <th (click)="sort('clientId')">Client Id
+      <i class="fa-solid fa-sort{{sortBy === 'clientId' ? '-up': sortBy === '-clientId' ? '-down': ''}}"></i>
+    </th>
+    <th (click)="sort('name')">Name
+      <i class="fa-solid fa-sort{{sortBy === 'name' ? '-up': sortBy === '-name' ? '-down':''}}"></i>
+    </th>
+    <th (click)="sort('surname')">Surname
+      <i class="fa-solid fa-sort{{sortBy === 'surname' ? '-up': sortBy === '-surname' ? '-down': ''}}"></i>
+    </th>
+    <th (click)="sort('legaCountry')">Legal Country
+      <i class="fa-solid fa-sort{{sortBy === 'legaCountry' ? '-up': sortBy === '-legaCountry' ? '-down': ''}}"></i>
+    </th>
+    <th (click)="sort('phoneNumber')">Phone
+      <i class="fa-solid fa-sort{{sortBy === 'phoneNumber' ? '-up': sortBy === '-phoneNumber' ? '-down': ''}}"></i>
+    </th>
     <th></th>
   </tr>
   </thead>

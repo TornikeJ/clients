@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
-import { Client, ClientsList } from '../clients.model';
-import { ClientsListService } from './clients-list.service';
-import { FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { SearchModalComponent } from './search-modal/search-modal.component';
-import { AddClientModalComponent } from './add-client-modal/add-client-modal.component';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { ConfirmModalComponent } from '../../../shared/modal/confirm/confirm-modal.component';
-import { PageEvent } from '@angular/material/paginator';
+import {Component, OnInit} from '@angular/core';
+import {map, Observable, tap} from 'rxjs';
+import {Client, ClientsList} from '../clients.model';
+import {ClientsListService} from './clients-list.service';
+import {FormControl} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {SearchModalComponent} from './search-modal/search-modal.component';
+import {AddClientModalComponent} from './add-client-modal/add-client-modal.component';
+import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
+import {ConfirmModalComponent} from '../../../shared/modal/confirm/confirm-modal.component';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-clients-list',
@@ -24,13 +24,15 @@ export class ClientsListComponent implements OnInit {
   length!: number;
   pageSize!: number;
   pageIndex!: number;
+  sortBy = '';
 
   constructor(
     private clientsListService: ClientsListService,
     private modalService: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.pageIndex = +(this.route.snapshot.queryParamMap.get('pageIndex') || 1);
@@ -40,7 +42,7 @@ export class ClientsListComponent implements OnInit {
 
   getClientList() {
     this.$clients = this.clientsListService
-      .getClientsList(this.pageIndex, this.pageSize)
+      .getClientsList(this.pageIndex, this.pageSize, this.sortBy)
       .pipe(
         tap((response) => {
           this.length = response.items;
@@ -127,5 +129,16 @@ export class ClientsListComponent implements OnInit {
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex + 1;
     this.getClientList();
+  }
+
+  sort(sortBy: string) {
+    if (sortBy !== this.sortBy && '-' + sortBy !== this.sortBy) {
+      this.sortBy = sortBy;
+    } else if (sortBy === this.sortBy) {
+      this.sortBy = '-' + this.sortBy;
+    } else if ('-' + sortBy === this.sortBy) {
+      this.sortBy = '';
+    }
+    this.getClientList()
   }
 }

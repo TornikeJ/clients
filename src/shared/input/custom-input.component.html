@@ -1,0 +1,26 @@
+<div class="wrapper" [ngClass]="{'error': hasError(control)}">
+  <label *ngIf="label" for="{{id}}">{{ label | titlecase }}</label>
+  <div class="element">
+    <i *ngIf="iconName" class="{{iconName}}" (click)="iconEvent()"></i>
+    <input type="text" [(ngModel)]="value" [id]="id" [disabled]="disabled" (keydown)="onKeyDown($event)"
+           (input)="setValue()"
+           [ngClass]="{'padding-left-40':iconName}" (blur)="onBlur()" (focus)="onFocus()">
+  </div>
+  <div *ngIf="hasError(control)">
+    <span *ngIf="control.errors?.['required']">
+      Field is required
+    </span>
+    <span *ngIf="control.errors?.['minlength']">
+      Minimum length {{ control.getError('minlength').requiredLength }}
+    </span>
+    <span *ngIf="control.errors?.['maxlength']">
+      Maximum length {{ control.getError('maxlength').requiredLength }}
+    </span>
+    <span *ngIf="control.errors?.['phoneFormat']">
+      {{ control.getError('phoneFormat').message }}
+    </span>
+    <span *ngIf="control.errors?.['languageFormat']">
+      {{ control.getError('languageFormat').message }}
+    </span>
+  </div>
+</div>

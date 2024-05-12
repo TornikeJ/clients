@@ -1,0 +1,17 @@
+<div class="modal">
+  <button type="button" class="close" (click)="close()">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+  <div class="wrapper">
+    <div class="header">
+      {{ title }}
+    </div>
+    <div class="content">
+      {{ message }}
+    </div>
+    <div class="button-group">
+      <button class="button primary" (click)="confirm()">Yes</button>
+      <button class="button secondary" (click)="close()">No</button>
+    </div>
+  </div>
+</div>

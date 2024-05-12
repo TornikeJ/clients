@@ -1,0 +1,9 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate" color="warn"></mat-progress-bar>
+<header class="header">
+  <img ngSrc="assets/logos/Space%20Logo.jpg" alt="Space logo" width="90" height="80">
+  <nav routerLink="home" routerLinkActive="active" class="navigation">Home</nav>
+  <nav routerLink="clients-list" routerLinkActive="active" class="navigation">Client List</nav>
+</header>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

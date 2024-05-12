@@ -1,0 +1,41 @@
+h2 {
+  font-size: 32px;
+}
+
+
+.image-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 200px;
+  height: 200px;
+  border: 1px solid #0061fe;
+  margin-bottom: 20px;
+
+  img {
+    width: 100%;
+  }
+
+  input{
+    display: none;
+  }
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+form {
+  margin-top: 10px;
+  margin-bottom: 50px;
+
+  .form-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 20px;
+    }
+  }
+}

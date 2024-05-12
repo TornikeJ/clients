@@ -1,0 +1,33 @@
+<div class="header">
+  <h2>Accounts</h2>
+  <button type="button" class="button primary" (click)="openAccountModal()">
+    <i class="fa-solid fa-plus"></i>
+    <span>Add New</span>
+  </button>
+</div>
+
+<table class="list">
+  <thead>
+  <tr>
+    <th>Client Number</th>
+    <th>Account Number</th>
+    <th>Account Type</th>
+    <th>Currency</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let account of $accounts | async">
+    <td>{{ account.clientNumber }}</td>
+    <td>{{ account.accountNumber }}</td>
+    <td>{{ account.type }}</td>
+    <td>{{ account.currencies }}</td>
+    <td>{{ account.status }}</td>
+    <td>
+      <app-custom-actions [actions]="getActions(account)"
+                          (actionClicked)="doAction($event, account)"></app-custom-actions>
+    </td>
+  </tr>
+  </tbody>
+</table>

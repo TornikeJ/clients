@@ -1,0 +1,51 @@
+<div class="header">
+  <h2>Clients</h2>
+  <button type="button" class="button primary" (click)="openAddClientModal()">
+    <i class="fa-solid fa-plus"></i>
+    <span>Add New</span>
+  </button>
+</div>
+
+<div class="filter-group">
+  <app-custom-input [formControl]="search" iconName="fa fa-magnifying-glass"
+                    (iconClicked)="searchClient(search.value)"></app-custom-input>
+  <button class="button secondary" (click)="openDetailedSearchModal()">
+    <i class="fa-solid fa-filter"></i>
+    <span>Filters</span>
+  </button>
+</div>
+
+<table class="list">
+  <thead>
+  <tr>
+    <th>Client Number</th>
+    <th>Client Id</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Legal Country</th>
+    <th>Phone</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let client of $clients | async">
+    <td>{{ client.clientNumber }}</td>
+    <td>{{ client.clientId }}</td>
+    <td>{{ client.name }}</td>
+    <td>{{ client.surname }}</td>
+    <td>{{ client.legalCountry }}</td>
+    <td>{{ client.phoneNumber }}</td>
+    <td>
+      <app-custom-actions [actions]="actions"
+                          (actionClicked)="doAction($event, client)"></app-custom-actions>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageIndex]="pageIndex-1"
+               [pageSizeOptions]="[5, 10, 25, 100]"
+               aria-label="Select page"
+               (page)="handlePageEvent($event)">
+</mat-paginator>

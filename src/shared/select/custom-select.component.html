@@ -1,0 +1,27 @@
+<div class="wrapper" [ngClass]="{'error': hasError(control)}">
+  <label *ngIf="label" for="{{id}}">{{ label | titlecase }}</label>
+  <div class="element">
+    <select
+      [(ngModel)]="value"
+      [id]="id"
+      [name]="name"
+      (ngModelChange)="setValue()"
+      [disabled]="disabled"
+    >
+      <option *ngFor="let option of options" [ngValue]="option[valueKey]">
+        {{ option[labelKey] }}
+      </option>
+    </select>
+  </div>
+  <div *ngIf="hasError(control)">
+    <span *ngIf="control.errors?.['required']">
+      Field is required
+    </span>
+    <span *ngIf="control.errors?.['minlength']">
+      Minimum length {{ control.getError('minlength').requiredLength }}
+    </span>
+    <span *ngIf="control.errors?.['maxlength']">
+      Maximum length {{ control.getError('maxlength').requiredLength }}
+    </span>
+  </div>
+</div>

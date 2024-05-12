@@ -1,0 +1,88 @@
+<h2>Client</h2>
+<div>
+  <div class="image-upload">
+    <img *ngIf="imageSrc" [src]="imageSrc"/>
+    <button *ngIf="!imageSrc" class="button primary" (click)="imageUpload.click() ">
+      <i class="fa-solid fa-upload"></i>
+      <span>Upload Image</span>
+    </button>
+    <input #imageUpload name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)"/>
+    <input #imageUpdate name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event, true)"/>
+  </div>
+  <button *ngIf="imageSrc" class="button secondary" (click)="imageUpdate.click()">
+    <i class="fa-solid fa-pencil"></i>
+    <span>Update Image</span>
+  </button>
+  <form [formGroup]="clientForm" (ngSubmit)="onSubmit(clientForm)">
+    <div class="form-group">
+      <app-custom-input [control]="clientForm.controls['name']"
+                        formControlName="name"
+                        [id]="'name'"
+                        [label]="'Name'"></app-custom-input>
+      <app-custom-input [control]="clientForm.controls['surname']"
+                        formControlName="surname"
+                        [id]="'surname'"
+                        [label]="'Surname'"></app-custom-input>
+      <app-custom-select [control]="clientForm.controls['gender']"
+                         formControlName="gender"
+                         [options]="genders"
+                         [labelKey]="'desc'"
+                         [valueKey]="'value'"
+                         [id]="'gender'"
+                         [name]="'gender'"
+                         [label]="'Gender'"></app-custom-select>
+    </div>
+
+    <div class="form-group">
+      <app-custom-input [control]="clientForm.controls['clientId']"
+                        formControlName="clientId"
+                        [id]="'clientId'"
+                        [label]="'Client Id'"></app-custom-input>
+      <app-custom-input [control]="clientForm.controls['phoneNumber']"
+                        formControlName="phoneNumber"
+                        [id]="'phoneNumber'"
+                        [label]="'Phone Number'"></app-custom-input>
+    </div>
+
+    <div class="form-group">
+      <app-custom-select [control]="clientForm.controls['legalCountry']"
+                         formControlName="legalCountry"
+                         [options]="countries"
+                         [labelKey]="'desc'"
+                         [valueKey]="'value'"
+                         [id]="'legalCountry'"
+                         [name]="'legalCountry'"
+                         [label]="'Legal Country'"></app-custom-select>
+      <app-custom-input [control]="clientForm.controls['legalCity']"
+                        formControlName="legalCity"
+                        [id]="'legalCity'"
+                        [label]="'Legal City'"></app-custom-input>
+      <app-custom-input [control]="clientForm.controls['legalAddress']"
+                        formControlName="legalAddress"
+                        [id]="'legalAddress'"
+                        [label]="'Legal Address'"></app-custom-input>
+    </div>
+
+    <div class="form-group">
+      <app-custom-select [control]="clientForm.controls['factCountry']"
+                         formControlName="factCountry"
+                         [options]="countries"
+                         [labelKey]="'desc'"
+                         [valueKey]="'value'"
+                         [id]="'factCountry'"
+                         [name]="'factCountry'"
+                         [label]="'Fact Country'"></app-custom-select>
+      <app-custom-input [control]="clientForm.controls['factCity']"
+                        formControlName="factCity"
+                        [id]="'factCity'"
+                        [label]="'Fact City'"></app-custom-input>
+      <app-custom-input [control]="clientForm.controls['factAddress']"
+                        formControlName="factAddress"
+                        [id]="'factAddress'"
+                        [label]="'Fact Address'"></app-custom-input>
+    </div>
+
+    <button class="button primary" [disabled]="!clientForm.dirty">Update</button>
+  </form>
+</div>
+<app-accounts [clientNumber]="clientNumber"></app-accounts>

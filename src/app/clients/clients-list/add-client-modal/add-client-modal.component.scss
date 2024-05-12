@@ -1,0 +1,26 @@
+.new-client {
+  padding: 35px 25px 15px;
+  position: relative;
+
+  .close {
+    position: absolute;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    top: 5px;
+    right: 10px;
+  }
+
+  form {
+    .form-group {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

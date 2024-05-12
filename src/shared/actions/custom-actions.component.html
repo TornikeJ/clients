@@ -1,0 +1,9 @@
+<button [cdkMenuTriggerFor]="menu" class="action">
+  <i class="fa-solid fa-ellipsis-vertical"></i>
+</button>
+
+<ng-template #menu>
+  <div cdkMenu class="menu">
+    <button *ngFor="let action of actions" class="menu-item" cdkMenuItem (click)="doAction(action)">{{ action | titlecase }}</button>
+  </div>
+</ng-template>

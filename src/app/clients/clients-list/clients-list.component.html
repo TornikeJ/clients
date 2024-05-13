@@ -40,14 +40,14 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let client of $clients | async">
+  <tr *ngFor="let client of $clients | async" [@flyInOut]="'in'">
     <td>{{ client.clientNumber }}</td>
     <td>{{ client.clientId }}</td>
     <td>{{ client.name }}</td>
     <td>{{ client.surname }}</td>
     <td>{{ client.legalCountry }}</td>
     <td>{{ client.phoneNumber }}</td>
-    <td>
+    <td class="center">
       <app-custom-actions [actions]="actions"
                           (actionClicked)="doAction($event, client)"></app-custom-actions>
     </td>

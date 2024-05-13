@@ -9,12 +9,33 @@ import {AddClientModalComponent} from './add-client-modal/add-client-modal.compo
 import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 import {ConfirmModalComponent} from '../../../shared/modal/confirm/confirm-modal.component';
 import {PageEvent} from '@angular/material/paginator';
+import {animate, group, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-clients-list',
   templateUrl: './clients-list.component.html',
   styleUrls: ['./clients-list.component.scss'],
   providers: [ClientsListService],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({
+        width: '*',
+        transform: 'translateX(0)', opacity: 1
+      })),
+      transition(':enter', [
+        style({width: 10, transform: 'translateX(50px)', opacity: 0}),
+        group([
+          animate('0.3s 0.1s ease', style({
+            transform: 'translateX(0)',
+            width: '*'
+          })),
+          animate('0.3s ease', style({
+            opacity: 1
+          }))
+        ])
+      ]),
+    ]),
+  ]
 })
 export class ClientsListComponent implements OnInit {
   $clients!: Observable<ClientsList[]>;

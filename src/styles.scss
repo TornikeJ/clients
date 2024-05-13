@@ -110,6 +110,49 @@ body {
   border-color: #2c37d0 !important;
 }
 
+.list {
+  width: 100%;
+  font-size: 14px;
+  text-align: left;
+  border-collapse: separate;
+  border: solid #BFE7FF 1px;
+  border-radius: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  thead {
+    background: #EFF9FF;
+    font-weight: bold;
+    color: #251b1b;
+  }
+
+  th, td {
+    border: 1px solid #ffffff;
+    padding: 15px;
+    transition: background-color 0.2s ease-in;
+  }
+
+  th {
+    cursor: pointer;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+
+  td {
+    color: #3c3c3c;
+
+    &:hover {
+      background: #EFF9FF;
+    }
+
+    &.center{
+      text-align: center;
+    }
+  }
+}
+
 .button {
   min-width: 170px;
   height: 40px;

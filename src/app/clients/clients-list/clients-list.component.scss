@@ -35,27 +35,3 @@
     }
   }
 }
-
-.list {
-  width: 100%;
-  font-size: 14px;
-  text-align: left;
-  border-collapse: separate;
-  border: solid #BFE7FF 1px;
-  border-radius: 5px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-
-  thead {
-    background: #BFE7FF;
-    font-weight: bold;
-  }
-
-  th, td {
-    padding: 15px;
-  }
-  
-  th{
-    cursor: pointer;
-  }
-}

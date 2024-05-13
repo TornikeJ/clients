@@ -24,7 +24,7 @@
     <td>{{ account.type }}</td>
     <td>{{ account.currencies }}</td>
     <td>{{ account.status }}</td>
-    <td>
+    <td class="center">
       <app-custom-actions [actions]="getActions(account)"
                           (actionClicked)="doAction($event, account)"></app-custom-actions>
     </td>

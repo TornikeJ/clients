@@ -10,7 +10,7 @@ import { Account, Currencies } from '../account.model';
 })
 export class AccountModalComponent implements OnInit {
   accountForm!: FormGroup;
-  account!: Account;
+  account: Account | null = null;
   clientNumber!: number;
   accountTypes = [
     { desc: 'Current', value: 'Current' },

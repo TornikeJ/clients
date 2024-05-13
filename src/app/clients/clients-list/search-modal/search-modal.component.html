@@ -2,22 +2,27 @@
   <button type="button" class="close" (click)="close()">
     <i class="fa-solid fa-xmark"></i>
   </button>
-  <form [formGroup]="detailedSearchGroup" (ngSubmit)="onSubmit(detailedSearchGroup)">
-    <div class="form-group">
-      <app-custom-input formControlName="name" [id]="'name'" [label]="'Name'"></app-custom-input>
-      <app-custom-input formControlName="surname" [id]="'surname'" [label]="'Surname'"></app-custom-input>
+  <div class="wrapper">
+    <div class="header">
+      Detailed Search
     </div>
+    <form [formGroup]="detailedSearchGroup" (ngSubmit)="onSubmit(detailedSearchGroup)"  [@flyInOut]="'in'">
+      <div class="form-group">
+        <app-custom-input formControlName="name" [id]="'name'" [label]="'Name'"></app-custom-input>
+        <app-custom-input formControlName="surname" [id]="'surname'" [label]="'Surname'"></app-custom-input>
+      </div>
 
-    <div class="form-group">
-      <app-custom-input formControlName="legalCountry" [id]="'legalCountry'"
-                        [label]="'Legal Country'"></app-custom-input>
-      <app-custom-input formControlName="clientNumber" [id]="'clientNumber'"
-                        [label]="'Client Number'"></app-custom-input>
-    </div>
-    <div class="form-group">
-      <app-custom-input formControlName="clientId" [id]="'clientId'" [label]="'Client Id'"></app-custom-input>
-      <app-custom-input formControlName="phoneNumber" [id]="'phoneNumber'" [label]="'Phone Number'"></app-custom-input>
-    </div>
-    <button class="button primary">Search</button>
-  </form>
+      <div class="form-group">
+        <app-custom-input formControlName="legalCountry" [id]="'legalCountry'"
+                          [label]="'Legal Country'"></app-custom-input>
+        <app-custom-input formControlName="clientNumber" [id]="'clientNumber'"
+                          [label]="'Client Number'"></app-custom-input>
+      </div>
+      <div class="form-group">
+        <app-custom-input formControlName="clientId" [id]="'clientId'" [label]="'Client Id'"></app-custom-input>
+        <app-custom-input formControlName="phoneNumber" [id]="'phoneNumber'" [label]="'Phone Number'"></app-custom-input>
+      </div>
+      <button class="button primary">Search</button>
+    </form>
+  </div>
 </div>

@@ -2,45 +2,50 @@
   <button type="button" class="close" (click)="close()">
     <i class="fa-solid fa-xmark"></i>
   </button>
-  <h2>{{ account?.accountNumber ? 'Update Account' : 'New Account' }}</h2>
-  <form [formGroup]="accountForm" (ngSubmit)="onSubmit(accountForm)">
-    <app-custom-input *ngIf="account?.accountNumber"
-                      formControlName="accountNumber"
-                      [id]="'name'"
-                      [label]="'Account Number'">
-
-    </app-custom-input>
-
-    <app-custom-input *ngIf="account?.accountNumber"
-                      formControlName="status"
-                      [id]="'status'"
-                      [label]="'Account Status'">
-
-    </app-custom-input>
-
-    <app-custom-select [control]="accountForm.controls['type']"
-                       formControlName="type"
-                       [options]="accountTypes"
-                       [label]="'Account Type'"
-                       [labelKey]="'desc'"
-                       [valueKey]="'value'"
-                       [id]="'accountType'"
-                       [disabled]="!!account?.accountNumber"
-    ></app-custom-select>
-
-    <div class="checkbox-group" [ngClass]="{'error': checkboxError}">
-      <h4>Currencies</h4>
-      <label *ngFor="let currency of currencies">
-        <input type="checkbox" name="currency"
-               [checked]="selectedCurrencies[currency]"
-               [disabled]="disabledCurrencies[currency]"
-               (change)="updateSelectedCurrencies(currency)"> {{ currency }}
-      </label>
-      <div *ngIf="checkboxError">
-        <span>{{ checkboxError }}</span>
-      </div>
+  <div class="wrapper">
+    <div class="header">
+      {{ account?.accountNumber ? 'Update Account' : 'New Account' }}
     </div>
+    <form [formGroup]="accountForm" (ngSubmit)="onSubmit(accountForm)">
+      <app-custom-input *ngIf="account?.accountNumber"
+                        formControlName="accountNumber"
+                        [id]="'name'"
+                        [label]="'Account Number'">
 
-    <button class="button primary" [disabled]="!accountForm.dirty">{{ account?.accountNumber ? 'Update' : 'Add' }}</button>
-  </form>
+      </app-custom-input>
+
+      <app-custom-input *ngIf="account?.accountNumber"
+                        formControlName="status"
+                        [id]="'status'"
+                        [label]="'Account Status'">
+
+      </app-custom-input>
+
+      <app-custom-select [control]="accountForm.controls['type']"
+                         formControlName="type"
+                         [options]="accountTypes"
+                         [label]="'Account Type'"
+                         [labelKey]="'desc'"
+                         [valueKey]="'value'"
+                         [id]="'accountType'"
+                         [disabled]="!!account?.accountNumber"
+      ></app-custom-select>
+
+      <div class="checkbox-group" [ngClass]="{'error': checkboxError}">
+        <h4>Currencies</h4>
+        <label *ngFor="let currency of currencies">
+          <input type="checkbox" name="currency"
+                 [checked]="selectedCurrencies[currency]"
+                 [disabled]="disabledCurrencies[currency]"
+                 (change)="updateSelectedCurrencies(currency)"> {{ currency }}
+        </label>
+        <div *ngIf="checkboxError">
+          <span>{{ checkboxError }}</span>
+        </div>
+      </div>
+
+      <button class="button primary"
+              [disabled]="!accountForm.dirty">{{ account?.accountNumber ? 'Update' : 'Add' }}</button>
+    </form>
+  </div>
 </div>

@@ -2,76 +2,81 @@
   <button type="button" class="close" (click)="close()">
     <i class="fa-solid fa-xmark"></i>
   </button>
-  <form [formGroup]="addClientForm" (ngSubmit)="onSubmit(addClientForm)">
-    <div class="form-group">
-      <app-custom-input [control]="addClientForm.controls['name']"
-                        formControlName="name"
-                        [id]="'name'"
-                        [label]="'Name'"></app-custom-input>
-      <app-custom-input [control]="addClientForm.controls['surname']"
-                        formControlName="surname"
-                        [id]="'surname'"
-                        [label]="'Surname'"></app-custom-input>
-      <app-custom-select [control]="addClientForm.controls['gender']"
-                         formControlName="gender"
-                         [options]="genders"
-                         [labelKey]="'desc'"
-                         [valueKey]="'value'"
-                         [id]="'gender'"
-                         [name]="'gender'"
-                         [label]="'Gender'"></app-custom-select>
-
+  <div class="wrapper">
+    <div class="header">
+      Add New Client
     </div>
+    <form [formGroup]="addClientForm" (ngSubmit)="onSubmit(addClientForm)">
+      <div class="form-group">
+        <app-custom-input [control]="addClientForm.controls['name']"
+                          formControlName="name"
+                          [id]="'name'"
+                          [label]="'Name'"></app-custom-input>
+        <app-custom-input [control]="addClientForm.controls['surname']"
+                          formControlName="surname"
+                          [id]="'surname'"
+                          [label]="'Surname'"></app-custom-input>
+        <app-custom-select [control]="addClientForm.controls['gender']"
+                           formControlName="gender"
+                           [options]="genders"
+                           [labelKey]="'desc'"
+                           [valueKey]="'value'"
+                           [id]="'gender'"
+                           [name]="'gender'"
+                           [label]="'Gender'"></app-custom-select>
 
-    <div class="form-group">
-      <app-custom-input [control]="addClientForm.controls['clientId']"
-                        formControlName="clientId"
-                        [id]="'clientId'"
-                        [label]="'Client Id'"></app-custom-input>
-      <app-custom-input [control]="addClientForm.controls['phoneNumber']"
-                        formControlName="phoneNumber"
-                        [id]="'phoneNumber'"
-                        [label]="'Phone Number'"></app-custom-input>
-    </div>
+      </div>
 
-    <div class="form-group">
-      <app-custom-select [control]="addClientForm.controls['legalCountry']"
-                         formControlName="legalCountry"
-                         [options]="countries"
-                         [labelKey]="'desc'"
-                         [valueKey]="'value'"
-                         [id]="'legalCountry'"
-                         [name]="'legalCountry'"
-                         [label]="'Legal Country'"></app-custom-select>
-      <app-custom-input [control]="addClientForm.controls['legalCity']"
-                        formControlName="legalCity"
-                        [id]="'legalCity'"
-                        [label]="'Legal City'"></app-custom-input>
-      <app-custom-input [control]="addClientForm.controls['legalAddress']"
-                        formControlName="legalAddress"
-                        [id]="'legalAddress'"
-                        [label]="'Legal Address'"></app-custom-input>
-    </div>
+      <div class="form-group">
+        <app-custom-input [control]="addClientForm.controls['clientId']"
+                          formControlName="clientId"
+                          [id]="'clientId'"
+                          [label]="'Client Id'"></app-custom-input>
+        <app-custom-input [control]="addClientForm.controls['phoneNumber']"
+                          formControlName="phoneNumber"
+                          [id]="'phoneNumber'"
+                          [label]="'Phone Number'"></app-custom-input>
+      </div>
 
-    <div class="form-group">
-      <app-custom-select [control]="addClientForm.controls['factCountry']"
-                         formControlName="factCountry"
-                         [options]="countries"
-                         [labelKey]="'desc'"
-                         [valueKey]="'value'"
-                         [id]="'factCountry'"
-                         [name]="'factCountry'"
-                         [label]="'Fact Country'"></app-custom-select>
-      <app-custom-input [control]="addClientForm.controls['factCity']"
-                        formControlName="factCity"
-                        [id]="'factCity'"
-                        [label]="'Fact City'"></app-custom-input>
-      <app-custom-input [control]="addClientForm.controls['factAddress']"
-                        formControlName="factAddress"
-                        [id]="'factAddress'"
-                        [label]="'Fact Address'"></app-custom-input>
-    </div>
+      <div class="form-group">
+        <app-custom-select [control]="addClientForm.controls['legalCountry']"
+                           formControlName="legalCountry"
+                           [options]="countries"
+                           [labelKey]="'desc'"
+                           [valueKey]="'value'"
+                           [id]="'legalCountry'"
+                           [name]="'legalCountry'"
+                           [label]="'Legal Country'"></app-custom-select>
+        <app-custom-input [control]="addClientForm.controls['legalCity']"
+                          formControlName="legalCity"
+                          [id]="'legalCity'"
+                          [label]="'Legal City'"></app-custom-input>
+        <app-custom-input [control]="addClientForm.controls['legalAddress']"
+                          formControlName="legalAddress"
+                          [id]="'legalAddress'"
+                          [label]="'Legal Address'"></app-custom-input>
+      </div>
 
-    <button class="button primary">Add</button>
-  </form>
+      <div class="form-group">
+        <app-custom-select [control]="addClientForm.controls['factCountry']"
+                           formControlName="factCountry"
+                           [options]="countries"
+                           [labelKey]="'desc'"
+                           [valueKey]="'value'"
+                           [id]="'factCountry'"
+                           [name]="'factCountry'"
+                           [label]="'Fact Country'"></app-custom-select>
+        <app-custom-input [control]="addClientForm.controls['factCity']"
+                          formControlName="factCity"
+                          [id]="'factCity'"
+                          [label]="'Fact City'"></app-custom-input>
+        <app-custom-input [control]="addClientForm.controls['factAddress']"
+                          formControlName="factAddress"
+                          [id]="'factAddress'"
+                          [label]="'Fact Address'"></app-custom-input>
+      </div>
+
+      <button class="button primary">Add</button>
+    </form>
+  </div>
 </div>

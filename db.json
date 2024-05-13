@@ -128,6 +128,66 @@
         "EUR": true
       },
       "status": "CLOSED"
+    },
+    {
+      "id": "23bb",
+      "clientNumber": null,
+      "currency": {
+        "GEL": true,
+        "USD": false,
+        "EUR": false
+      },
+      "type": "Funded",
+      "accountNumber": "GE04SP282923558",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "3032",
+      "clientNumber": null,
+      "currency": {
+        "GEL": true,
+        "USD": false,
+        "EUR": false
+      },
+      "type": "Saving",
+      "accountNumber": "GE04SP664428342",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "b832",
+      "clientNumber": null,
+      "currency": {
+        "GEL": true,
+        "USD": false,
+        "EUR": false
+      },
+      "type": "Funded",
+      "accountNumber": "GE04SP660346974",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "02e1",
+      "clientNumber": 312495,
+      "currency": {
+        "GEL": true,
+        "USD": true,
+        "EUR": false
+      },
+      "type": "Saving",
+      "accountNumber": "GE04SP470717118",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "bc2b",
+      "clientNumber": 312495,
+      "currency": {
+        "GEL": true,
+        "USD": false,
+        "EUR": false
+      },
+      "type": "Saving",
+      "accountNumber": "GE04SP612637474",
+      "status": "ACTIVE"
     }
   ]
 }

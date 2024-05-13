@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from './client.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Client } from '../clients.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { languageValidator } from '../../../shared/validators/language-validator';
@@ -38,6 +38,7 @@ export class ClientComponent implements OnInit {
     this.initClient();
     this.activatedRoute.data.subscribe(({ client }) => {
       if (client) {
+        this.clientNumber = client[0].clientNumber;
         this.id = client[0].id;
         client[0].phoneNumber = client[0].phoneNumber.toString();
         this.clientForm.patchValue(client[0]);
@@ -47,8 +48,6 @@ export class ClientComponent implements OnInit {
   }
 
   getClient(): void {
-    this.clientNumber =
-      this.activatedRoute.snapshot.paramMap.get('clientNumber') || '';
     if (this.clientNumber) {
       this.clientService
         .getClient(+this.clientNumber)

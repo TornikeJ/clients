@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import { phoneValidator } from '../../../../shared/validators/phone-validator';
-import { languageValidator } from '../../../../shared/validators/language-validator';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatDialogRef} from '@angular/material/dialog';
+import {phoneValidator} from '../../../../shared/validators/phone-validator';
+import {languageValidator} from '../../../../shared/validators/language-validator';
 
 @Component({
   selector: 'app-add-client-modal',
@@ -12,16 +12,17 @@ import { languageValidator } from '../../../../shared/validators/language-valida
 export class AddClientModalComponent implements OnInit {
   addClientForm!: FormGroup;
   genders = [
-    { desc: 'Female', value: 'F' },
-    { desc: 'Male', value: 'M' },
+    {desc: 'Female', value: 'F'},
+    {desc: 'Male', value: 'M'},
   ];
   countries = [
-    { desc: 'Georgia', value: 'Georgia' },
-    { desc: 'Czechia', value: 'Czechia' },
-    { desc: 'Germany', value: 'Germany' },
+    {desc: 'Georgia', value: 'Georgia'},
+    {desc: 'Czechia', value: 'Czechia'},
+    {desc: 'Germany', value: 'Germany'},
   ];
 
-  constructor(private dialogRef: MatDialogRef<AddClientModalComponent>) {}
+  constructor(private dialogRef: MatDialogRef<AddClientModalComponent>) {
+  }
 
   ngOnInit() {
     this.addClientForm = new FormGroup({
@@ -63,17 +64,16 @@ export class AddClientModalComponent implements OnInit {
       addClientFormGroup.markAllAsTouched();
       return;
     }
-    this.transformRequest();
-    this.dialogRef.close(addClientFormGroup.value);
+    const req = {
+      ...this.addClientForm.value
+    }
+    this.transformRequest(req);
+    this.dialogRef.close(req);
   }
 
-  private transformRequest() {
-    this.addClientForm
-      .get('phoneNumber')
-      ?.setValue(+this.addClientForm.get('phoneNumber')?.value);
-    this.addClientForm
-      .get('clientId')
-      ?.setValue(+this.addClientForm.get('clientId')?.value);
+  private transformRequest(request: any) {
+    request.phoneNumber = +request.phoneNumber;
+    request.clientId = +request.clientId;
   }
 
   close() {

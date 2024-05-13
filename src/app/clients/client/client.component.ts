@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ClientService } from './client.service';
-import { ActivatedRoute } from '@angular/router';
-import { Client } from '../clients.model';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { languageValidator } from '../../../shared/validators/language-validator';
-import { phoneValidator } from '../../../shared/validators/phone-validator';
-import { MatDialog } from '@angular/material/dialog';
-import { InfoModalComponent } from '../../../shared/modal/info/info-modal.component';
+import {Component, OnInit} from '@angular/core';
+import {ClientService} from './client.service';
+import {ActivatedRoute} from '@angular/router';
+import {Client} from '../clients.model';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {languageValidator} from '../../../shared/validators/language-validator';
+import {phoneValidator} from '../../../shared/validators/phone-validator';
+import {MatDialog} from '@angular/material/dialog';
+import {InfoModalComponent} from '../../../shared/modal/info/info-modal.component';
 
 @Component({
   selector: 'app-client',
@@ -18,13 +18,13 @@ export class ClientComponent implements OnInit {
   private id!: string;
   clientForm!: FormGroup;
   genders = [
-    { desc: 'Female', value: 'F' },
-    { desc: 'Male', value: 'M' },
+    {desc: 'Female', value: 'F'},
+    {desc: 'Male', value: 'M'},
   ];
   countries = [
-    { desc: 'Georgia', value: 'Georgia' },
-    { desc: 'Czechia', value: 'Czechia' },
-    { desc: 'Germany', value: 'Germany' },
+    {desc: 'Georgia', value: 'Georgia'},
+    {desc: 'Czechia', value: 'Czechia'},
+    {desc: 'Germany', value: 'Germany'},
   ];
   imageSrc: any;
 
@@ -32,11 +32,12 @@ export class ClientComponent implements OnInit {
     private clientService: ClientService,
     private activatedRoute: ActivatedRoute,
     private modalService: MatDialog,
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.initClient();
-    this.activatedRoute.data.subscribe(({ client }) => {
+    this.activatedRoute.data.subscribe(({client}) => {
       if (client) {
         this.clientNumber = client[0].clientNumber;
         this.id = client[0].id;
@@ -67,12 +68,12 @@ export class ClientComponent implements OnInit {
       addClientFormGroup.markAllAsTouched();
       return;
     }
-    this.transformRequest();
     const req = {
       ...this.clientForm.value,
       id: this.id,
       clientNumber: this.clientNumber,
     };
+    this.transformRequest(req);
     this.clientService.updateClient(req).subscribe((result) => {
       if (result) {
         this.clientForm.markAsPristine();
@@ -88,13 +89,9 @@ export class ClientComponent implements OnInit {
     });
   }
 
-  private transformRequest() {
-    this.clientForm
-      .get('phoneNumber')
-      ?.setValue(+this.clientForm.get('phoneNumber')?.value);
-    this.clientForm
-      .get('clientId')
-      ?.setValue(+this.clientForm.get('clientId')?.value);
+  private transformRequest(request: any) {
+    request.phoneNumber = +request.phoneNumber;
+    request.clientId = +request.clientId;
   }
 
   private initClient() {

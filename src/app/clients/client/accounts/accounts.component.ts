@@ -5,7 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AccountModalComponent } from './account-modal/account-modal.component';
 import { AccountService } from './account.service';
 import { ConfirmModalComponent } from '../../../../shared/modal/confirm/confirm-modal.component';
-import { InfoModalComponent } from '../../../../shared/modal/info/info-modal.component';
 
 @Component({
   selector: 'app-accounts',
@@ -16,7 +15,6 @@ import { InfoModalComponent } from '../../../../shared/modal/info/info-modal.com
 export class AccountsComponent implements OnInit {
   @Input() clientNumber!: string;
   $accounts!: Observable<Account[]>;
-  actions!: string[];
 
   constructor(
     private modalService: MatDialog,

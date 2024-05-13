@@ -6,7 +6,7 @@
     <div class="header">
       Detailed Search
     </div>
-    <form [formGroup]="detailedSearchGroup" (ngSubmit)="onSubmit(detailedSearchGroup)"  [@flyInOut]="'in'">
+    <form [formGroup]="detailedSearchGroup" (ngSubmit)="onSubmit(detailedSearchGroup)"  [@fadeIn]="'in'">
       <div class="form-group">
         <app-custom-input formControlName="name" [id]="'name'" [label]="'Name'"></app-custom-input>
         <app-custom-input formControlName="surname" [id]="'surname'" [label]="'Surname'"></app-custom-input>

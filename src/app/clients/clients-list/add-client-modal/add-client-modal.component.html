@@ -6,7 +6,7 @@
     <div class="header">
       Add New Client
     </div>
-    <form [formGroup]="addClientForm" (ngSubmit)="onSubmit(addClientForm)">
+    <form [formGroup]="addClientForm" (ngSubmit)="onSubmit(addClientForm)" [@fadeIn]="'in'">
       <div class="form-group">
         <app-custom-input [control]="addClientForm.controls['name']"
                           formControlName="name"

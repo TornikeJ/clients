@@ -3,11 +3,30 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {phoneValidator} from '../../../../shared/validators/phone-validator';
 import {languageValidator} from '../../../../shared/validators/language-validator';
+import {animate, group, query, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-add-client-modal',
   templateUrl: './add-client-modal.component.html',
   styleUrls: ['./add-client-modal.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        query('.form-group', [
+          style({opacity: 0, scale: 0.8}),
+          group([
+            animate('0.3s 0.1s ease', style({
+              scale: 1,
+              width: '*'
+            })),
+            animate('0.5s ease', style({
+              opacity: 1
+            }))
+          ])
+        ])
+      ]),
+    ]),
+  ]
 })
 export class AddClientModalComponent implements OnInit {
   addClientForm!: FormGroup;

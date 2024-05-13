@@ -1,24 +1,26 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
-import {animate, group, style, transition, trigger} from "@angular/animations";
+import {animate, group, query, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-search-modal',
   templateUrl: './search-modal.component.html',
   styleUrls: ['./search-modal.component.scss'],
   animations: [
-    trigger('flyInOut', [
+    trigger('fadeIn', [
       transition(':enter', [
-        style({ opacity: 0, scale:0.8}),
-        group([
-          animate('0.3s 0.1s ease', style({
-            scale: 1,
-            width: '*'
-          })),
-          animate('0.5s ease', style({
-            opacity: 1
-          }))
+        query('.form-group', [
+          style({opacity: 0, scale: 0.8}),
+          group([
+            animate('0.3s 0.1s ease', style({
+              scale: 1,
+              width: '*'
+            })),
+            animate('0.5s ease', style({
+              opacity: 1
+            }))
+          ])
         ])
       ]),
     ]),

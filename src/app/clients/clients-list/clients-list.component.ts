@@ -18,9 +18,11 @@ import {
   trigger,
 } from '@angular/animations';
 import { Store } from '@ngrx/store';
-import {selectAllClients, selectClientsList} from './state/clients/clients-list.selectors';
-import {loadClientsList} from "./state/clients/clients-list.actions";
-import {AppState} from "./state/app.state";
+import {
+  selectAllClients,
+} from './state/clients/clients-list.selectors';
+import { loadClientsList } from './state/clients/clients-list.actions';
+import { AppState } from './state/app.state';
 
 @Component({
   selector: 'app-clients-list',
@@ -78,25 +80,36 @@ export class ClientsListComponent implements OnInit {
   ngOnInit() {
     this.pageIndex = +(this.route.snapshot.queryParamMap.get('pageIndex') || 1);
     this.pageSize = +(this.route.snapshot.queryParamMap.get('pageSize') || 5);
-    this.store.dispatch(loadClientsList({pageIndex: this.pageIndex, pageSize:this.pageSize, sortBy: this.sortBy})); // Dispatch the action with parameters
-    this.clients$ = this.store.select(selectAllClients)
-      .pipe(
-        tap((response) => {
-          this.length = response?.items;
-          const queryParams: NavigationExtras = {
-            queryParams: {
-              pageSize: this.pageSize,
-              pageIndex: this.pageIndex,
-            },
-          };
-          this.router.navigate([], queryParams);
-        }),
-        map((response) => response?.data)
-      );
+    this.store.dispatch(
+      loadClientsList({
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize,
+        sortBy: this.sortBy,
+      })
+    );
+    this.clients$ = this.store.select(selectAllClients).pipe(
+      tap((response) => {
+        this.length = response?.items;
+        const queryParams: NavigationExtras = {
+          queryParams: {
+            pageSize: this.pageSize,
+            pageIndex: this.pageIndex,
+          },
+        };
+        this.router.navigate([], queryParams);
+      }),
+      map((response) => response?.data)
+    );
   }
 
   getClientList() {
-    this.store.dispatch(loadClientsList({pageIndex: this.pageIndex, pageSize:this.pageSize, sortBy: this.sortBy})); // Dispatch the action with parameters
+    this.store.dispatch(
+      loadClientsList({
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize,
+        sortBy: this.sortBy,
+      })
+    );
   }
 
   openDetailedSearchModal() {

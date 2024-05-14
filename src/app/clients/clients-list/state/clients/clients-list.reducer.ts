@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ClientListResponse, ClientsList } from '../../../clients.model';
+import { ClientListResponse } from '../../../clients.model';
 import * as ClientListActions from './clients-list.actions';
 
 type status = string | 'pending' | 'loading' | 'error' | 'success';

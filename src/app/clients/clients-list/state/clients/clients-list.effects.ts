@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
+import { mergeMap, map, catchError } from 'rxjs/operators';
 import * as ClientsActions from './clients-list.actions';
 import { ClientsListService } from '../../clients-list.service';
-import { of, tap } from 'rxjs';
-import { NavigationExtras, Router } from '@angular/router';
+import { of } from 'rxjs';
 
 @Injectable()
 export class ClientEffects {
   constructor(
     private actions$: Actions,
-    private clientService: ClientsListService,
-    private router: Router
+    private clientService: ClientsListService
   ) {}
 
   loadClients$ = createEffect(() =>

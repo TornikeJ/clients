@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import {ClientListResponse, ClientsList} from '../../../clients.model';
+import { ClientListResponse } from '../../../clients.model';
 
 export const loadClientsList = createAction(
   '[Clients] Fetch Clients List',

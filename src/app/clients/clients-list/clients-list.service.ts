@@ -1,26 +1,25 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Client, ClientListResponse, ClientsList} from '../clients.model';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Client, ClientListResponse, ClientsList } from '../clients.model';
 
 @Injectable()
 export class ClientsListService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getClientsList(pageIndex: number, pageSize: number, sortBy?: string) {
     return this.http.get<ClientListResponse>(
-      `http://localhost:3001/clients-list/?_page=${pageIndex}&_per_page=${pageSize}&_sort=${sortBy}`,
+      `http://localhost:3001/clients-list/?_page=${pageIndex}&_per_page=${pageSize}&_sort=${sortBy}`
     );
   }
 
   getClientsListByClientNumber(clientNumber: number) {
     return this.http.get<ClientsList[]>(
-      `http://localhost:3001/clients-list?clientNumber=${clientNumber}`,
+      `http://localhost:3001/clients-list?clientNumber=${clientNumber}`
     );
   }
 
   getClientsListByFullDetails(params: ClientsList) {
-    const {clientNumber, phoneNumber, clientId, surname, name, legalCountry} =
+    const { clientNumber, phoneNumber, clientId, surname, name, legalCountry } =
       params;
     let requestParams = '?';
     if (clientNumber) requestParams += `clientNumber=${clientNumber}&`;
@@ -31,7 +30,7 @@ export class ClientsListService {
     if (legalCountry) requestParams += `legalCountry=${legalCountry}`;
 
     return this.http.get<ClientsList[]>(
-      `http://localhost:3001/clients-list` + requestParams,
+      `http://localhost:3001/clients-list` + requestParams
     );
   }
 

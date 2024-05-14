@@ -38,7 +38,7 @@ import {animate, group, state, style, transition, trigger} from "@angular/animat
   ]
 })
 export class ClientsListComponent implements OnInit {
-  $clients!: Observable<ClientsList[]>;
+  clients$!: Observable<ClientsList[]>;
   search: FormControl<number> = new FormControl();
   actions: string[] = ['edit', 'delete'];
   pageEvent!: PageEvent;
@@ -62,7 +62,7 @@ export class ClientsListComponent implements OnInit {
   }
 
   getClientList() {
-    this.$clients = this.clientsListService
+    this.clients$ = this.clientsListService
       .getClientsList(this.pageIndex, this.pageSize, this.sortBy)
       .pipe(
         tap((response) => {
@@ -88,14 +88,14 @@ export class ClientsListComponent implements OnInit {
       .afterClosed()
       .subscribe((result: ClientsList) => {
         if (result) {
-          this.$clients =
+          this.clients$ =
             this.clientsListService.getClientsListByFullDetails(result);
         }
       });
   }
 
   searchClient(clientNumber: number) {
-    this.$clients =
+    this.clients$ =
       this.clientsListService.getClientsListByClientNumber(clientNumber);
   }
 

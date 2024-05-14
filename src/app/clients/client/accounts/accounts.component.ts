@@ -14,7 +14,7 @@ import { ConfirmModalComponent } from '../../../../shared/modal/confirm/confirm-
 })
 export class AccountsComponent implements OnInit {
   @Input() clientNumber!: string;
-  $accounts!: Observable<Account[]>;
+  accounts$!: Observable<Account[]>;
 
   constructor(
     private modalService: MatDialog,
@@ -91,7 +91,7 @@ export class AccountsComponent implements OnInit {
   }
 
   private getClientAccounts() {
-    this.$accounts = this.accountService
+    this.accounts$ = this.accountService
       .getClientAccounts(+this.clientNumber)
       .pipe(
         map((accounts) => {

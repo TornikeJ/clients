@@ -32,5 +32,6 @@ export const clientsListReducer = createReducer(
     ...state,
     error,
     status: 'error',
-  }))
+  })),
+  on(ClientListActions.addClient, (state) => state)
 );

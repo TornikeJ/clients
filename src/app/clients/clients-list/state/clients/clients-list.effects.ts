@@ -27,4 +27,22 @@ export class ClientEffects {
       )
     )
   );
+
+  addClient$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ClientsActions.addClient),
+      mergeMap(({ client }) =>
+        this.clientService.addClient(client).pipe(
+          map(() => {
+            // Assuming the addition was successful
+            return ClientsActions.addClientSuccess({ client });
+          }),
+          catchError((error) => {
+            // Handle error if the addition failed
+            return of(ClientsActions.addClientFailure({ error }));
+          })
+        )
+      )
+    )
+  );
 }

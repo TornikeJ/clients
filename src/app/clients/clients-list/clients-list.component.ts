@@ -21,7 +21,7 @@ import { Store } from '@ngrx/store';
 import {
   selectAllClients,
 } from './state/clients/clients-list.selectors';
-import { loadClientsList } from './state/clients/clients-list.actions';
+import {addClient, loadClientsList} from './state/clients/clients-list.actions';
 import { AppState } from './state/app.state';
 
 @Component({
@@ -141,11 +141,12 @@ export class ClientsListComponent implements OnInit {
       .afterClosed()
       .subscribe((client: Client) => {
         if (client) {
-          this.clientsListService.addClient(client).subscribe((result) => {
-            if (result) {
-              this.getClientList();
-            }
-          });
+          this.store.dispatch(addClient({client}))
+          // this.clientsListService.addClient(client).subscribe((result) => {
+          //   if (result) {
+          //     this.getClientList();
+          //   }
+          // });
         }
       });
   }

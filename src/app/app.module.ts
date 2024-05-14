@@ -7,15 +7,17 @@ import { ClientsModule } from './clients/clients.module';
 import { NgOptimizedImage } from '@angular/common';
 import { HomeModule } from './home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {CustomInputComponent} from "../shared/input/custom-input.component";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {TransactionsModule} from "./transactions/transactions.module";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ClientsModule,
+    TransactionsModule,
     HomeModule,
     NgOptimizedImage,
     BrowserAnimationsModule,

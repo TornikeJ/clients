@@ -119,7 +119,7 @@ export class ClientsListComponent implements OnInit {
 
   doAction(action: string, client: ClientsList): void {
     if (action === 'edit') {
-      this.router.navigate(['client', client.clientNumber]);
+      this.router.navigate(['clients-list/client', client.clientNumber]);
     } else if (action === 'delete') {
       this.modalService
         .open(ConfirmModalComponent, {

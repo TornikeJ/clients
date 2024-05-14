@@ -58,8 +58,7 @@ import {AppState} from "./state/app.state";
   ],
 })
 export class ClientsListComponent implements OnInit {
-  // $clients!: Observable<ClientsList[]>;
-  $clients: any;
+  clients$!: Observable<ClientsList[] | undefined>;
   search: FormControl<number> = new FormControl();
   actions: string[] = ['edit', 'delete'];
   pageEvent!: PageEvent;
@@ -80,7 +79,7 @@ export class ClientsListComponent implements OnInit {
     this.pageIndex = +(this.route.snapshot.queryParamMap.get('pageIndex') || 1);
     this.pageSize = +(this.route.snapshot.queryParamMap.get('pageSize') || 5);
     this.store.dispatch(loadClientsList({pageIndex: this.pageIndex, pageSize:this.pageSize, sortBy: this.sortBy})); // Dispatch the action with parameters
-    this.$clients = this.store.select(selectAllClients)
+    this.clients$ = this.store.select(selectAllClients)
       .pipe(
         tap((response) => {
           this.length = response?.items;
@@ -109,14 +108,14 @@ export class ClientsListComponent implements OnInit {
       .afterClosed()
       .subscribe((result: ClientsList) => {
         if (result) {
-          this.$clients =
+          this.clients$ =
             this.clientsListService.getClientsListByFullDetails(result);
         }
       });
   }
 
   searchClient(clientNumber: number) {
-    this.$clients =
+    this.clients$ =
       this.clientsListService.getClientsListByClientNumber(clientNumber);
   }
 

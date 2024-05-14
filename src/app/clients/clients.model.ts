@@ -27,7 +27,7 @@ export interface Client {
 
 export interface ClientListResponse {
   data: ClientsList[];
-  items: number
+  items: number;
 }
 
 export interface ClientImage {

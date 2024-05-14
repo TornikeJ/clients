@@ -16,7 +16,12 @@ import { AccountsComponent } from './client/accounts/accounts.component';
 import { AccountModalComponent } from './client/accounts/account-modal/account-modal.component';
 import { ConfirmModalComponent } from '../../shared/modal/confirm/confirm-modal.component';
 import { ClientService } from './client/client.service';
-import {MatPaginatorModule} from "@angular/material/paginator";
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { StoreModule } from '@ngrx/store';
+import { clientsListReducer } from './clients-list/state/clients/clients-list.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ClientEffects } from './clients-list/state/clients/clients-list.effects';
+import {ClientsListService} from "./clients-list/clients-list.service";
 
 @NgModule({
   declarations: [
@@ -42,7 +47,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     CustomActionsModule,
     FormsModule,
     MatPaginatorModule,
+    StoreModule.forFeature('clientsList', clientsListReducer),
+    EffectsModule.forFeature([ClientEffects]),
   ],
-  providers: [ClientService],
+  providers: [ClientService, ClientsListService],
 })
 export class ClientsModule {}

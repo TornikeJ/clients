@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {TransactionsModule} from "./transactions/transactions.module";
 import { NotFoundComponent } from './not-found/not-found.component';
+import {StoreModule} from "@ngrx/store";
+import {EffectsModule} from "@ngrx/effects";
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -22,6 +24,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NgOptimizedImage,
     BrowserAnimationsModule,
     MatProgressBarModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

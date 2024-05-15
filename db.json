@@ -109,7 +109,7 @@
       "factCountry": "Czechia",
       "factCity": "Prague",
       "photo": "",
-      "id": "12312344412",
+      "id": "123112",
       "clientNumber": 544203
     },
     {
@@ -189,10 +189,39 @@
       "photo": "",
       "id": "a64a",
       "clientNumber": 396646
+    },
+    {
+      "id": "140e",
+      "name": "test",
+      "surname": "test",
+      "gender": "F",
+      "clientId": 12312344412,
+      "phoneNumber": 555512312,
+      "legalAddress": "Tbilisi",
+      "legalCountry": "Georgia",
+      "legalCity": "Tbilisi",
+      "factAddress": "Prague",
+      "factCountry": "Czechia",
+      "factCity": "Prague",
+      "clientNumber": 702660
+    },
+    {
+      "id": "0eb3",
+      "name": "test",
+      "surname": "test",
+      "gender": "F",
+      "clientId": 12312344412,
+      "phoneNumber": 555512312,
+      "legalAddress": "Tbilisi",
+      "legalCountry": "Czechia",
+      "legalCity": "Tbilisi",
+      "factAddress": "Prague",
+      "factCountry": "Georgia",
+      "factCity": "Prague",
+      "clientNumber": 781576
     }
   ],
-  "clients-media": [
-  ],
+  "clients-media": [],
   "accounts": [
     {
       "id": "dc10",
@@ -229,42 +258,6 @@
         "EUR": true
       },
       "status": "CLOSED"
-    },
-    {
-      "id": "23bb",
-      "clientNumber": null,
-      "currency": {
-        "GEL": true,
-        "USD": false,
-        "EUR": false
-      },
-      "type": "Funded",
-      "accountNumber": "GE04SP282923558",
-      "status": "ACTIVE"
-    },
-    {
-      "id": "3032",
-      "clientNumber": null,
-      "currency": {
-        "GEL": true,
-        "USD": false,
-        "EUR": false
-      },
-      "type": "Saving",
-      "accountNumber": "GE04SP664428342",
-      "status": "ACTIVE"
-    },
-    {
-      "id": "b832",
-      "clientNumber": null,
-      "currency": {
-        "GEL": true,
-        "USD": false,
-        "EUR": false
-      },
-      "type": "Funded",
-      "accountNumber": "GE04SP660346974",
-      "status": "ACTIVE"
     },
     {
       "id": "02e1",

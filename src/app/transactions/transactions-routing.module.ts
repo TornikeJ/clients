@@ -1,10 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import {TransactionsComponent} from "./transactions/transactions.component";
+import { TransactionsComponent } from './transactions/transactions.component';
 
-const routes: Routes = [
-  { path: '', component: TransactionsComponent },
-];
+const routes: Routes = [{ path: '', component: TransactionsComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

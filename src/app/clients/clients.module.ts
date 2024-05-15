@@ -21,7 +21,7 @@ import { StoreModule } from '@ngrx/store';
 import { clientsListReducer } from './clients-list/state/clients/clients-list.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ClientEffects } from './clients-list/state/clients/clients-list.effects';
-import {ClientsListService} from "./clients-list/clients-list.service";
+import { ClientsListService } from './clients-list/clients-list.service';
 
 @NgModule({
   declarations: [

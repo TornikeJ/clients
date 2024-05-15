@@ -5,5 +5,10 @@ export const selectClientsList = (state: AppState) => state.clientsList;
 
 export const selectAllClients = createSelector(
   selectClientsList,
-  (clientsList) => clientsList.clientsList // Return the clients list directly
+  (clientsList) => {
+    return {
+      data: clientsList.clientsList,
+      items: clientsList.items,
+    };
+  }
 );

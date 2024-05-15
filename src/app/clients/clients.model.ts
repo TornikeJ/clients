@@ -15,7 +15,7 @@ export interface Client {
   name: string;
   surname: string;
   gender?: string;
-  phoneNumber: number | string;
+  phoneNumber: number;
   legalAddress: string;
   legalCountry: string;
   legalCity: string;

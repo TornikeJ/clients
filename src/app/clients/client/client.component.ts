@@ -1,12 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {ClientService} from './client.service';
-import {ActivatedRoute} from '@angular/router';
-import {Client} from '../clients.model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {languageValidator} from '../../../shared/validators/language-validator';
-import {phoneValidator} from '../../../shared/validators/phone-validator';
-import {MatDialog} from '@angular/material/dialog';
-import {InfoModalComponent} from '../../../shared/modal/info/info-modal.component';
+import { Component, OnInit } from '@angular/core';
+import { ClientService } from './client.service';
+import { ActivatedRoute } from '@angular/router';
+import { Client } from '../clients.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { languageValidator } from '../../../shared/validators/language-validator';
+import { phoneValidator } from '../../../shared/validators/phone-validator';
+import { MatDialog } from '@angular/material/dialog';
+import { InfoModalComponent } from '../../../shared/modal/info/info-modal.component';
+import { CanDeactivateType } from './can-deactivate.guard';
+import { ConfirmModalComponent } from '../../../shared/modal/confirm/confirm-modal.component';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-client',
@@ -18,26 +21,25 @@ export class ClientComponent implements OnInit {
   private id!: string;
   clientForm!: FormGroup;
   genders = [
-    {desc: 'Female', value: 'F'},
-    {desc: 'Male', value: 'M'},
+    { desc: 'Female', value: 'F' },
+    { desc: 'Male', value: 'M' },
   ];
   countries = [
-    {desc: 'Georgia', value: 'Georgia'},
-    {desc: 'Czechia', value: 'Czechia'},
-    {desc: 'Germany', value: 'Germany'},
+    { desc: 'Georgia', value: 'Georgia' },
+    { desc: 'Czechia', value: 'Czechia' },
+    { desc: 'Germany', value: 'Germany' },
   ];
   imageSrc: any;
 
   constructor(
     private clientService: ClientService,
     private activatedRoute: ActivatedRoute,
-    private modalService: MatDialog,
-  ) {
-  }
+    private modalService: MatDialog
+  ) {}
 
   ngOnInit() {
     this.initClient();
-    this.activatedRoute.data.subscribe(({client}) => {
+    this.activatedRoute.data.subscribe(({ client }) => {
       if (client) {
         this.clientNumber = client[0].clientNumber;
         this.id = client[0].id;
@@ -55,8 +57,11 @@ export class ClientComponent implements OnInit {
         .subscribe((client: Client[]) => {
           if (client) {
             this.id = client[0].id;
-            client[0].phoneNumber = client[0].phoneNumber.toString();
-            this.clientForm.patchValue(client[0]);
+            const resp = {
+              ...client[0],
+              phoneNumber: client[0].phoneNumber.toString(),
+            };
+            this.clientForm.patchValue(resp);
             this.getClientImage();
           }
         });
@@ -163,5 +168,19 @@ export class ClientComponent implements OnInit {
         this.imageSrc = result.imageUrl;
       }
     });
+  }
+
+  canDeactivate(): CanDeactivateType {
+    if (this.clientForm.dirty) {
+      const dialogRef = this.modalService.open(ConfirmModalComponent, {
+        data: {
+          message:
+            'Are you sure you want to leave this page? Any unsaved changes will be lost',
+        },
+      });
+
+      return dialogRef.afterClosed().pipe(map((result) => !!result));
+    }
+    return true;
   }
 }

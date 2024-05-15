@@ -7,12 +7,25 @@
 </div>
 
 <div class="filter-group">
-  <app-custom-input [formControl]="search" iconName="fa fa-magnifying-glass"
-                    (iconClicked)="searchClient(search.value)"></app-custom-input>
-  <button class="button secondary" (click)="openDetailedSearchModal()">
-    <i class="fa-solid fa-filter"></i>
-    <span>Filters</span>
-  </button>
+  <div class="search-group">
+    <app-custom-input [formControl]="search" iconName="fa fa-magnifying-glass"
+                      [placeholder]="'Search by client number'"
+                      (iconClicked)="searchClient(search.value)"></app-custom-input>
+    <button *ngIf="showSearchResetButton" class="button primary" (click)="resetList()">
+      <i class="fa-solid fa-rotate-right"></i>
+      <span>Reset List</span>
+    </button>
+  </div>
+  <div class="search-group">
+    <button class="button secondary" (click)="openDetailedSearchModal()">
+      <i class="fa-solid fa-filter"></i>
+      <span>Filters</span>
+    </button>
+    <button *ngIf="showFilterResetButton" class="button primary" (click)="resetList()">
+      <i class="fa-solid fa-rotate-right"></i>
+      <span>Reset List</span>
+    </button>
+  </div>
 </div>
 
 <table class="list">

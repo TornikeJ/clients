@@ -5,7 +5,7 @@
       "surname": "Doe",
       "gender": "M",
       "clientId": 22345678912,
-      "phoneNumber": 551331111,
+      "phoneNumber": 551331136,
       "legalAddress": "Tbilisi",
       "legalCountry": "Georgia",
       "legalCity": "Tbilisi",
@@ -22,7 +22,14 @@
       "clientId": 52345678912,
       "name": "Jack",
       "surname": "Sparrow",
+      "legalAddress": "Tbilisi",
       "legalCountry": "Georgia",
+      "legalCity": "Tbilisi",
+      "factAddress": "Munich",
+      "factCountry": "Germany",
+      "factCity": "Munich",
+      "photo": "",
+      "gender": "M",
       "phoneNumber": 557331112
     },
     {
@@ -31,7 +38,14 @@
       "id": "52345678112",
       "name": "Naomi",
       "surname": "Osaka",
+      "legalAddress": "Tbilisi",
       "legalCountry": "Georgia",
+      "legalCity": "Tbilisi",
+      "factAddress": "Munich",
+      "factCountry": "Germany",
+      "factCity": "Munich",
+      "photo": "",
+      "gender": "M",
       "phoneNumber": 555331112
     },
     {
@@ -40,7 +54,14 @@
       "clientId": 22345678915,
       "name": "Tom",
       "surname": "Holland",
+      "legalAddress": "Tbilisi",
       "legalCountry": "Georgia",
+      "legalCity": "Tbilisi",
+      "factAddress": "Munich",
+      "factCountry": "Germany",
+      "factCity": "Munich",
+      "photo": "",
+      "gender": "M",
       "phoneNumber": 555331112
     },
     {
@@ -49,7 +70,14 @@
       "clientId": 72345678912,
       "name": "Peter",
       "surname": "Parker",
+      "legalAddress": "Tbilisi",
       "legalCountry": "Georgia",
+      "legalCity": "Tbilisi",
+      "factAddress": "Munich",
+      "factCountry": "Germany",
+      "factCity": "Munich",
+      "photo": "",
+      "gender": "M",
       "phoneNumber": 555331112
     },
     {
@@ -130,6 +158,37 @@
       "photo": "",
       "id": "f877",
       "clientNumber": 490564
+    },
+    {
+      "id": "ff72",
+      "name": "Dwight",
+      "surname": "Schrute",
+      "gender": "M",
+      "clientId": 15125124413,
+      "phoneNumber": 512412512,
+      "legalAddress": "Tbilisi",
+      "legalCountry": "Georgia",
+      "legalCity": "Tbilisi",
+      "factAddress": "Prague",
+      "factCountry": "Czechia",
+      "factCity": "Prague",
+      "clientNumber": 531679
+    },
+    {
+      "name": "Dwayne",
+      "surname": "Johnson",
+      "gender": "M",
+      "clientId": 52151242311,
+      "phoneNumber": 514121255,
+      "legalAddress": "Tbilisi",
+      "legalCountry": "Georgia",
+      "legalCity": "Tbilisi",
+      "factAddress": "Prague",
+      "factCountry": "Czechia",
+      "factCity": "Prague",
+      "photo": "",
+      "id": "a64a",
+      "clientNumber": 396646
     }
   ],
   "clients-media": [
@@ -281,6 +340,30 @@
       },
       "type": "Funded",
       "accountNumber": "GE04SP450837208",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "6e38",
+      "clientNumber": 396646,
+      "currency": {
+        "GEL": true,
+        "USD": true,
+        "EUR": false
+      },
+      "type": "Saving",
+      "accountNumber": "GE04SP326750512",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "034b",
+      "clientNumber": 396646,
+      "currency": {
+        "GEL": true,
+        "USD": false,
+        "EUR": true
+      },
+      "type": "Saving",
+      "accountNumber": "GE04SP251111989",
       "status": "ACTIVE"
     }
   ]

@@ -51,7 +51,6 @@ export class AccountsComponent implements OnInit {
         .open(ConfirmModalComponent, {
           hasBackdrop: true,
           data: {
-            title: 'Confirmation',
             message: `Are you sure you want to ${action} this account?`,
           },
         })

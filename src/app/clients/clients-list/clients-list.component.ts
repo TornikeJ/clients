@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchModalComponent } from './search-modal/search-modal.component';
 import { AddClientModalComponent } from './add-client-modal/add-client-modal.component';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmModalComponent } from '../../../shared/modal/confirm/confirm-modal.component';
 import { PageEvent } from '@angular/material/paginator';
 import {
@@ -18,10 +18,15 @@ import {
   trigger,
 } from '@angular/animations';
 import { Store } from '@ngrx/store';
+import { selectAllClients } from './state/clients/clients-list.selectors';
 import {
-  selectAllClients,
-} from './state/clients/clients-list.selectors';
-import {addClient, loadClientsList} from './state/clients/clients-list.actions';
+  addClient,
+  loadClientListByClientNumber,
+  loadClientListByFullDetails,
+  loadClientsList,
+  updatePagination,
+  updateSorting,
+} from './state/clients/clients-list.actions';
 import { AppState } from './state/app.state';
 
 @Component({
@@ -60,7 +65,7 @@ import { AppState } from './state/app.state';
   ],
 })
 export class ClientsListComponent implements OnInit {
-  clients$!: Observable<ClientsList[] | undefined>;
+  clients$!: Observable<ClientsList[] | null>;
   search: FormControl<number> = new FormControl();
   actions: string[] = ['edit', 'delete'];
   pageEvent!: PageEvent;
@@ -68,6 +73,8 @@ export class ClientsListComponent implements OnInit {
   pageSize!: number;
   pageIndex!: number;
   sortBy = '';
+  showSearchResetButton!: boolean;
+  showFilterResetButton!: boolean;
 
   constructor(
     private clientsListService: ClientsListService,
@@ -80,36 +87,26 @@ export class ClientsListComponent implements OnInit {
   ngOnInit() {
     this.pageIndex = +(this.route.snapshot.queryParamMap.get('pageIndex') || 1);
     this.pageSize = +(this.route.snapshot.queryParamMap.get('pageSize') || 5);
+    this.sortBy = this.route.snapshot.queryParamMap.get('sortBy') || '';
+    this.initStore();
+  }
+
+  private initStore() {
     this.store.dispatch(
-      loadClientsList({
-        pageIndex: this.pageIndex,
-        pageSize: this.pageSize,
-        sortBy: this.sortBy,
-      })
+      updatePagination({ pageSize: this.pageSize, pageIndex: this.pageIndex })
     );
+    this.store.dispatch(updateSorting({ sortBy: this.sortBy }));
+    this.store.dispatch(loadClientsList());
     this.clients$ = this.store.select(selectAllClients).pipe(
       tap((response) => {
         this.length = response?.items;
-        const queryParams: NavigationExtras = {
-          queryParams: {
-            pageSize: this.pageSize,
-            pageIndex: this.pageIndex,
-          },
-        };
-        this.router.navigate([], queryParams);
       }),
-      map((response) => response?.data)
+      map((response) => response.data)
     );
   }
 
   getClientList() {
-    this.store.dispatch(
-      loadClientsList({
-        pageIndex: this.pageIndex,
-        pageSize: this.pageSize,
-        sortBy: this.sortBy,
-      })
-    );
+    this.store.dispatch(loadClientsList());
   }
 
   openDetailedSearchModal() {
@@ -121,15 +118,15 @@ export class ClientsListComponent implements OnInit {
       .afterClosed()
       .subscribe((result: ClientsList) => {
         if (result) {
-          this.clients$ =
-            this.clientsListService.getClientsListByFullDetails(result);
+          this.showFilterResetButton = true;
+          this.store.dispatch(loadClientListByFullDetails({ client: result }));
         }
       });
   }
 
   searchClient(clientNumber: number) {
-    this.clients$ =
-      this.clientsListService.getClientsListByClientNumber(clientNumber);
+    this.showSearchResetButton = true;
+    this.store.dispatch(loadClientListByClientNumber({ clientNumber }));
   }
 
   openAddClientModal() {
@@ -141,12 +138,7 @@ export class ClientsListComponent implements OnInit {
       .afterClosed()
       .subscribe((client: Client) => {
         if (client) {
-          this.store.dispatch(addClient({client}))
-          // this.clientsListService.addClient(client).subscribe((result) => {
-          //   if (result) {
-          //     this.getClientList();
-          //   }
-          // });
+          this.store.dispatch(addClient({ client }));
         }
       });
   }
@@ -159,7 +151,6 @@ export class ClientsListComponent implements OnInit {
         .open(ConfirmModalComponent, {
           hasBackdrop: true,
           data: {
-            title: 'Confirmation',
             message: `Are you sure you want to delete this client?`,
           },
         })
@@ -183,6 +174,9 @@ export class ClientsListComponent implements OnInit {
     this.length = e.length;
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex + 1;
+    this.store.dispatch(
+      updatePagination({ pageSize: this.pageSize, pageIndex: this.pageIndex })
+    );
     this.getClientList();
   }
 
@@ -194,6 +188,14 @@ export class ClientsListComponent implements OnInit {
     } else if ('-' + sortBy === this.sortBy) {
       this.sortBy = '';
     }
+    this.store.dispatch(updateSorting({ sortBy: this.sortBy }));
+    this.getClientList();
+  }
+
+  resetList() {
+    this.showSearchResetButton = false;
+    this.showFilterResetButton = false;
+    this.search.reset();
     this.getClientList();
   }
 }

@@ -19,7 +19,7 @@ export class ConfirmModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.message = this.data.message;
-    this.title = this.data.title;
+    this.title = this.data.title || 'Confirmation';
   }
 
   close() {

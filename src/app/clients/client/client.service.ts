@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Client, ClientImage } from '../clients.model';
-import {delay} from "rxjs";
+import { delay } from 'rxjs';
 
 @Injectable()
 export class ClientService {
   constructor(private http: HttpClient) {}
 
   getClient(clientNumber: number) {
-    return this.http.get<Client[]>(
-      `http://localhost:3001/clients-list/?clientNumber=${clientNumber}`,
-    ).pipe(delay(3000));
+    return this.http
+      .get<Client[]>(
+        `http://localhost:3001/clients-list/?clientNumber=${clientNumber}`
+      )
+      .pipe(delay(3000));
     //delay resolver-ისთვის
   }
 
@@ -26,7 +28,7 @@ export class ClientService {
 
   getClientImage(id: string) {
     return this.http.get<ClientImage>(
-      'http://localhost:3001/clients-media/' + id,
+      'http://localhost:3001/clients-media/' + id
     );
   }
 

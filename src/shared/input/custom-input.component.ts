@@ -29,6 +29,7 @@ export class CustomInputComponent implements ControlValueAccessor {
   @Input() id!: string;
   @Input() disabled!: boolean;
   @Input() control!: AbstractControl;
+  @Input() placeholder = '';
 
   @Output() iconClicked: EventEmitter<void> = new EventEmitter();
 

@@ -4,6 +4,7 @@
     <i *ngIf="iconName" class="{{iconName}}" (click)="iconEvent()"></i>
     <input type="text" [(ngModel)]="value" [id]="id" [disabled]="disabled" (keydown)="onKeyDown($event)"
            (input)="setValue()"
+           [placeholder]="placeholder"
            [ngClass]="{'padding-left-40':iconName}" (blur)="onBlur()" (focus)="onFocus()">
   </div>
   <div *ngIf="hasError(control)">

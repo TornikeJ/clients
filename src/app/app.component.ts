@@ -1,5 +1,4 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { ClientService } from './clients/client/client.service';
 import {
   NavigationCancel,
   NavigationEnd,

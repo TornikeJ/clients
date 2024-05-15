@@ -84,7 +84,7 @@ export class AddClientModalComponent implements OnInit {
       return;
     }
     const req = {
-      ...this.addClientForm.value
+      ...addClientFormGroup.value
     }
     this.transformRequest(req);
     this.dialogRef.close(req);

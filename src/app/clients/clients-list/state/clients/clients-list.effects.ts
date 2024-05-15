@@ -84,7 +84,7 @@ export class ClientEffects {
       mergeMap(([{ client }, state]) => {
         const { pageIndex, pageSize, sortBy } = state.clientsList;
         return this.clientService.addClient(client).pipe(
-          map(() => ClientsActions.loadClientsList()), // Pass dynamic parameters
+          map(() => ClientsActions.loadClientsList()),
           catchError((error) =>
             of(ClientsActions.loadClientsFailure({ error }))
           )
